@@ -1,12 +1,12 @@
 {
     "name": "jacksparrot.ui.editor",
     "references": [
-        "GUID:ab32ce3bde88ddf4e9dfb366de01fea0",
-        "GUID:c8348b3ca46e56c479ae673316dc14fe",
-        "GUID:9e24947de15b9834991c9d8411ea37cf",
-        "GUID:84651a3751eca9349aac36a66bba901b",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:60463a001f85845a9a83d7f4008b985b"
+        "JackSParrotUtils.Runtime",
+        "JackSParrotAudio.Runtime",
+        "jacksparrot.ui.runtime",
+        "Unity.Addressables",
+        "Unity.TextMeshPro",
+        "Unity.ResourceManager"
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

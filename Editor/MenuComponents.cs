@@ -40,7 +40,7 @@ public class MenuComponents
     [MenuItem("GameObject/UI/JackSParrot/Button")]
     static void CreateButtonView()
     {
-        var go = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("ButtonView"));
+        var go = Object.Instantiate(Resources.Load<GameObject>("ButtonView"));
         go.name = "Button";
         AddToUI(go.transform);
     }
@@ -48,8 +48,16 @@ public class MenuComponents
     [MenuItem("GameObject/UI/JackSParrot/Popup")]
     static void CreatePopupView()
     {
-        var go = UnityEngine.Object.Instantiate(Resources.Load<GameObject>("PopupView"));
+        var go = Object.Instantiate(Resources.Load<GameObject>("PopupView"));
         go.name = "Popup";
+        AddToUI(go.transform);
+    }
+
+    [MenuItem("GameObject/UI/JackSParrot/Scroll List")]
+    static void CreateScrollListView()
+    {
+        GameObject go = Object.Instantiate(Resources.Load<GameObject>("ScrollList"));
+        go.name = "Scroll List";
         AddToUI(go.transform);
     }
 
@@ -68,6 +76,7 @@ public class MenuComponents
             }
             element.SetParent(canvas.transform, false);
         }
+        Undo.RegisterCreatedObjectUndo(element, "Create " + element.name);
         Selection.activeGameObject = element.gameObject;
     }
 
