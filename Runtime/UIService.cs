@@ -35,25 +35,24 @@ namespace JackSParrot.UI
             _uiRootInstance.AddNotification(notification);
         }
 
-        public void PushPopup<T>(PopupConfig config, System.Action<T> onLoaded) where T : PopupView
+        public void PushPopup(IPopupConfig config)
         {
-            Addressables.InstantiateAsync(config.PrefabName).Completed += r => OnPopupLoaded(r, config, onLoaded); 
+            Addressables.InstantiateAsync(config.PrefabName).Completed += r => OnPopupLoaded(r, config); 
         }
 
-        private void OnPopupLoaded<T>(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj, PopupConfig config, System.Action<T> onLoaded) where T : PopupView
+        private void OnPopupLoaded(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj, IPopupConfig config)
         {
             var res = obj.Result;
             if(res == null)
             {
                 SharedServices.GetService<ICustomLogger>()?.LogError("Could not load popup " + config.PrefabName);
-                onLoaded?.Invoke(null);
                 return;
             }
-            var popup = res.GetComponent<T>();
+            var popup = res.GetComponent<PopupView>();
             popup.Initialize(config);
             _currentPopups.Push(popup);
             _uiRootInstance.AddPopup(popup);
-            onLoaded?.Invoke(popup);
+            popup.Show();
         }
 
         public void PopPopup()

@@ -14,8 +14,8 @@ public class Startup
     [MenuItem("JackSParrot/Import essentials")]
     static void ImportEssentials()
     {
-        CreateIfNeeded("BaseView-NewView.cs");
-        CreateIfNeeded("PopupView-NewPopup.cs");
+        CreateIfNeeded("JackSParrot__BaseView-NewView.cs");
+        CreateIfNeeded("JackSParrot__PopupView-NewPopup.cs");
     }
 
     static void CreateIfNeeded(string file)
@@ -31,7 +31,6 @@ public class Startup
         {
             System.IO.File.WriteAllText(path, Resources.Load<TextAsset>(file).text);
         }
-        AssetDatabase.Refresh();
     }
 }
 

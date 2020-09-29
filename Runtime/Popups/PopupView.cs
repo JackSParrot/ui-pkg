@@ -5,10 +5,9 @@ using JackSParrot.Services.Audio;
 
 namespace JackSParrot.UI
 {
-    public class PopupConfig
+    public interface IPopupConfig
     {
-        public virtual string PrefabName => "";
-        public Action OnCloseCallback;
+        string PrefabName { get; }
     }
 
     public class PopupView : BaseView
@@ -16,9 +15,9 @@ namespace JackSParrot.UI
         [SerializeField] string _onAppearSound = null;
         [SerializeField] string _onHideSound = null;
 
-        PopupConfig _config = null;
+        IPopupConfig _config = null;
 
-        public virtual void Initialize(PopupConfig config)
+        public virtual void Initialize(IPopupConfig config)
         {
             _config = config;
         }
@@ -48,7 +47,6 @@ namespace JackSParrot.UI
         protected override void OnHidden(Action callback)
         {
             base.OnHidden(callback);
-            _config.OnCloseCallback?.Invoke();
             SharedServices.GetService<UIService>().PopPopup();
         }
 

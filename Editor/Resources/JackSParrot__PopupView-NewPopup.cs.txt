@@ -4,11 +4,11 @@ using JackSParrot.Utils;
 
 namespace JackSParrot.UI
 {
-    public class GenericPopupView : PopupView
+    public class #SCRIPTNAME# : PopupView
     {
-        public class GenericPopupConfig : IPopupConfig
+        public class Config : PopupConfig
         {
-            public string PrefabName => "MessagePopup";
+            public override string PrefabName => "#SCRIPTNAME#";
             public string Title;
             public string Message;
             public string OkButtonText;
@@ -22,15 +22,15 @@ namespace JackSParrot.UI
         [SerializeField] ButtonView _okButton = null;
         [SerializeField] ButtonView _closeButton = null;
 
-        GenericPopupConfig _popupConfig = null;
+        Config _popupConfig = null;
 
-        public override void Initialize(IPopupConfig config)
+        public override void Initialize(PopupConfig config)
         {
             base.Initialize(config);
-            _popupConfig = config as GenericPopupConfig;
+            _popupConfig = config as Config;
             if(_popupConfig == null)
             {
-                SharedServices.GetService<ICustomLogger>()?.LogError("Popup config is wrong");
+                SharedServices.GetService<ICustomLogger>()?.LogError("Popup config is wrong for #SCRIPTNAME#");
             }
             _titleText.text = _popupConfig.Title;
             _messageText.text = _popupConfig.Message;
