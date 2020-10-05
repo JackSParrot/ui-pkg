@@ -6,9 +6,9 @@ namespace JackSParrot.UI
 {
     public class #SCRIPTNAME# : PopupView
     {
-        public class Config : PopupConfig
+        public class Config : IPopupConfig
         {
-            public override string PrefabName => "#SCRIPTNAME#";
+            public string PrefabName => "#SCRIPTNAME#";
             public string Title;
             public string Message;
             public string OkButtonText;
@@ -24,7 +24,7 @@ namespace JackSParrot.UI
 
         Config _popupConfig = null;
 
-        public override void Initialize(PopupConfig config)
+        public override void Initialize(IPopupConfig config)
         {
             base.Initialize(config);
             _popupConfig = config as Config;
