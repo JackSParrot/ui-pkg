@@ -66,7 +66,7 @@ namespace JackSParrot.UI
             if (!IsShown) return;
             IsShown = false;
 
-            if (animated)
+            if (animated && _animationInfo != null)
             {
                 _animationInfo.Tweener.Play(_animationInfo.HideTweener, () => OnHidden(onFinish));
             }
