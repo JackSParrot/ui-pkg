@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,6 +17,11 @@ namespace JackSParrot.UI
             {
                 _tweener.Play(_data, () => _onComplete?.Invoke());
             }
+        }
+
+		void OnDisable()
+        {
+			_tweener.Stop();
         }
 
         public void Play(Action callback)
