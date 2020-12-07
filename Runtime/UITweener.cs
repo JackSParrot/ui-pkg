@@ -40,6 +40,7 @@ namespace JackSParrot.UI
         UITweenData _playingData = null;
         public void Play(UITweenData data, Action onFinish = null)
         {
+			Stop();
             if (data.Target == null)
             {
                 SharedServices.GetService<ICustomLogger>()?.LogError("Tried to animate an object with no target");
@@ -78,6 +79,19 @@ namespace JackSParrot.UI
             if (onFinish != null)
             {
                 _tweenObj.setOnComplete(onFinish);
+            }
+        }
+
+		public void Stop()
+        {
+			if(_tweenObj != null)
+            {
+				int id = _tweenObj.id;
+				if(LeanTween.isTweening(id))
+                {
+					LeanTween.cancel(id);
+				}
+				_tweenObj = null;
             }
         }
 
