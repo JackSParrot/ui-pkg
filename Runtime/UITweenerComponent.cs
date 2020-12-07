@@ -21,12 +21,17 @@ namespace JackSParrot.UI
 
 		void OnDisable()
         {
-			_tweener.Stop();
+			Stop();
         }
+
+		public void Stop()
+		{
+			_tweener.Stop();
+		}
 
         public void Play(Action callback)
         {
-            _tweener.Play(_data, () =>
+			_tweener.Play(_data, () =>
             {
                 _onComplete?.Invoke();
                 callback?.Invoke();
