@@ -45,7 +45,7 @@ namespace JackSParrot.UI
             Addressables.InstantiateAsync(config.PrefabName).Completed += r => onPopupLoaded(OnPopupLoaded(r, config) as T);
         }
 
-        private void OnPopupLoaded(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj, IPopupConfig config)
+        private PopupView OnPopupLoaded(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj, IPopupConfig config)
         {
             var res = obj.Result;
             if(res == null)
@@ -58,6 +58,7 @@ namespace JackSParrot.UI
             _currentPopups.Push(popup);
             _uiRootInstance.AddPopup(popup);
             popup.Show();
+            return popup;
         }
 
         public void PopPopup()
