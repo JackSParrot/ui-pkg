@@ -93,13 +93,13 @@ namespace JackSParrot.UI
 
         void SetHUD(BaseView hud)
         {
-            if (hud == null) return;
             if (_currentHud != null)
             {
                 UnityEngine.Object.Destroy(_currentHud.gameObject);
             }
-            _uiRootInstance.SetHUD(hud);
             _currentHud = hud;
+            if (hud == null) return;
+            _uiRootInstance.SetHUD(hud);
             hud.Show();
         }
 
