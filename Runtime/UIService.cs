@@ -100,6 +100,7 @@ namespace JackSParrot.UI
             }
             _uiRootInstance.SetHUD(hud);
             _currentHud = hud;
+            hud.Show();
         }
 
         public BaseView CurrentHud()
