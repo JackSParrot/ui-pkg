@@ -72,7 +72,7 @@ namespace JackSParrot.UI
         }
 
 
-        public void SetHUD<T>(string prefabName, System.Action<T> onLoaded) where T : BaseView
+        public void SetHUD<T>(string prefabName, System.Action<T> onLoaded = null) where T : BaseView
         {
             Addressables.InstantiateAsync(prefabName).Completed += r => OnHUDLoaded(r, onLoaded);
         }
