@@ -99,6 +99,14 @@ namespace JackSParrot.UI
             {
                 _activeImage = _image.sprite;
             }
+            if (_pointerDownTweenData.Target == null)
+            {
+                _pointerDownTweenData.Target = gameObject;
+            }
+            if (_pointerUpTweenData.Target == null)
+            {
+                _pointerUpTweenData.Target = gameObject;
+            }
         }
 
         void Onclicked()
