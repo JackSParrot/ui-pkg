@@ -51,7 +51,7 @@ namespace JackSParrot.UI
             if(res == null)
             {
                 SharedServices.GetService<ICustomLogger>()?.LogError("Could not load popup " + config.PrefabName);
-                return;
+                return null;
             }
             var popup = res.GetComponent<PopupView>();
             popup.Initialize(config);
