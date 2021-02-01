@@ -27,6 +27,10 @@ namespace JackSParrot.UI
             set
             {
                 _enabled = value;
+                if(_activeImage == null)
+                {
+                    _activeImage = _image.sprite;
+                }
                 _image.sprite = _enabled ? _activeImage : _disabledImage;
             }
         }
