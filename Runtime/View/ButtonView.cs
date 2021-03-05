@@ -99,7 +99,7 @@ namespace JackSParrot.UI
 
         void Awake()
         {
-            if(_image != null)
+            if(_image != null && _activeImage == null)
             {
                 _activeImage = _image.sprite;
             }
