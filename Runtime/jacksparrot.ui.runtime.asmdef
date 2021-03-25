@@ -1,13 +1,14 @@
 {
     "name": "jacksparrot.ui.runtime",
+    "rootNamespace": "",
     "references": [
         "JackSParrotUtils.Runtime",
         "JackSParrotAudio.Runtime",
         "Unity.Addressables",
         "Unity.TextMeshPro",
-        "Unity.ResourceManager"
+        "Unity.ResourceManager",
+        "DOTween.runtime"
     ],
-    "optionalUnityReferences": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
@@ -15,5 +16,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

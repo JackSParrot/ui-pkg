@@ -10,8 +10,8 @@ namespace JackSParrot.UI
 {
     public class ButtonView : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
     {
-        [SerializeField] UITweenData _pointerDownTweenData = null;
-        [SerializeField] UITweenData _pointerUpTweenData = null;
+        [SerializeField] DOTween.UITweenData _pointerDownTweenData = null;
+        [SerializeField] DOTween.UITweenData _pointerUpTweenData = null;
         [SerializeField] bool _enabled = true;
         [SerializeField] TMPro.TMP_Text _textTMP = null;
         [SerializeField] Image _image = null;
@@ -19,7 +19,7 @@ namespace JackSParrot.UI
         [SerializeField] Sprite _disabledImage = null;
         [SerializeField] UnityEvent _onClick = null;
         Sprite _activeImage = null;
-        UITweener _tweener = new UITweener();
+        DOTween.UITweener _tweener = new DOTween.UITweener();
 
         public bool Enabled
         {

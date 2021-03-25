@@ -4,9 +4,9 @@ namespace JackSParrot.UI
 {
     public class ViewAnimationInfo : MonoBehaviour
     {
-        public UITweenData ShowTweener = null;
-        public UITweenData HideTweener = null;
+        public DOTween.UITweenData ShowTweener = null;
+        public DOTween.UITweenData HideTweener = null;
 
-        public UITweener Tweener = new UITweener();
+        public DOTween.UITweener Tweener = new DOTween.UITweener();
     }
 }
