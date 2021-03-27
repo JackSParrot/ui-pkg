@@ -4,6 +4,7 @@
 You need to import the following packages before importing this package
 1. https://github.com/JackSParrot/utils-pkg
 2. https://github.com/JackSParrot/audio-pkg
+3. https://github.com/JackSParrot/dotween-pkg
 
 ## Installation using the Unity Package Manager (Unity 2019.3+)
 1. Open the Package Manager Window. 
