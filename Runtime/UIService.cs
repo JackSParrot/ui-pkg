@@ -37,12 +37,12 @@ namespace JackSParrot.UI
 
         public void PushPopup(IPopupConfig config)
         {
-            Addressables.InstantiateAsync(config.PrefabName).Completed += r => OnPopupLoaded(r, config); 
+            Addressables.InstantiateAsync(config.PrefabAddress).Completed += r => OnPopupLoaded(r, config); 
         }
 
         public void PushPopup<T>(IPopupConfig config, System.Action<T> onPopupLoaded) where T : PopupView
         {
-            Addressables.InstantiateAsync(config.PrefabName).Completed += r => onPopupLoaded(OnPopupLoaded(r, config) as T);
+            Addressables.InstantiateAsync(config.PrefabAddress).Completed += r => onPopupLoaded(OnPopupLoaded(r, config) as T);
         }
 
         private PopupView OnPopupLoaded(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj, IPopupConfig config)
@@ -50,7 +50,7 @@ namespace JackSParrot.UI
             var res = obj.Result;
             if(res == null)
             {
-                SharedServices.GetService<ICustomLogger>()?.LogError("Could not load popup " + config.PrefabName);
+                SharedServices.GetService<ICustomLogger>()?.LogError("Could not load popup " + config.PrefabAddress);
                 return null;
             }
             var popup = res.GetComponent<PopupView>();

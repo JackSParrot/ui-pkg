@@ -8,7 +8,7 @@ namespace JackSParrot.UI
     {
         public class GenericPopupConfig : IPopupConfig
         {
-            public string PrefabName => "MessagePopup";
+            public string PrefabAddress => "MessagePopup";
             public string Title;
             public string Message;
             public string OkButtonText;

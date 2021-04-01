@@ -7,7 +7,7 @@ namespace JackSParrot.UI
 {
     public interface IPopupConfig
     {
-        string PrefabName { get; }
+        string PrefabAddress { get; }
     }
 
     public class PopupView : BaseView
