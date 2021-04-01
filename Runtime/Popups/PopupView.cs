@@ -46,8 +46,8 @@ namespace JackSParrot.UI
 
         protected override void OnHidden(Action callback)
         {
-            base.OnHidden(callback);
             SharedServices.GetService<UIService>().PopPopup();
+            base.OnHidden(callback);
         }
 
         public void Close(Action callback = null)
