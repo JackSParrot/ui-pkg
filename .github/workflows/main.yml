@@ -7,4 +7,4 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: curl -X GET -G 'https://script.google.com/macros/s/AKfycbyDbHOFakSKQUYcb2lZ3NLuj7Ktg9ELxXpt44wtdlc78wXaGnEQ/exec' -d 'sha=${{github.sha}}' -d 'name=es.jacksparrot.ui'
+      - run: curl -X GET -G 'https://script.google.com/macros/s/AKfycbxltBuZ_29oBnlxdXOIOjiZrnWY3mVAe34cZ4uUxalTS4Pm4ZGL_igseMFS-hAvH4RoXA/exec' -d 'sha=${{github.sha}}' -d 'name=es.jacksparrot.ui'
