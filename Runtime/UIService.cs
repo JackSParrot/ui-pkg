@@ -1,10 +1,19 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using JackSParrot.Utils;
 
 namespace JackSParrot.UI
 {
+    public class PopupOpenedEvent
+    {
+        public PopupOpenedEvent(string address)
+        {
+            PopupAddress = address;
+            
+        }
+        public string PopupAddress;
+    }
     public class UIService : System.IDisposable
     {
         UIRoot _uiRoot;
@@ -58,6 +67,7 @@ namespace JackSParrot.UI
             _currentPopups.Push(popup);
             _uiRootInstance.AddPopup(popup);
             popup.Show();
+            SharedServices.GetService<EventDispatcher>()?.Raise(new PopupOpenedEvent(config.PrefabAddress));
             return popup;
         }
 
