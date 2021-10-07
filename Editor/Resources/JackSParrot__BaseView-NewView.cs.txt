@@ -6,7 +6,7 @@ namespace JackSParrot.UI
 {
     public class #SCRIPTNAME# : BaseView
     {
-        public static string PrefabName = "#SCRIPTNAME#";
+        public static string PrefabAddress = "#SCRIPTNAME#";
 
         [SerializeField] TMPro.TMP_Text _titleText = null;
         [SerializeField] TMPro.TMP_Text _messageText = null;

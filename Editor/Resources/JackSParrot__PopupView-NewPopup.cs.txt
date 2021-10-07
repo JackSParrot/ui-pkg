@@ -8,7 +8,7 @@ namespace JackSParrot.UI
     {
         public class Config : IPopupConfig
         {
-            public string PrefabName => "#SCRIPTNAME#";
+            public string PrefabAddress => "#SCRIPTNAME#";
             public string Title;
             public string Message;
             public string OkButtonText;
