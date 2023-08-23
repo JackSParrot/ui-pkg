@@ -30,7 +30,7 @@ namespace JackSParrot.UI
             _popupConfig = config as GenericPopupConfig;
             if(_popupConfig == null)
             {
-                SharedServices.GetService<ICustomLogger>()?.LogError("Popup config is wrong");
+                Debug.LogError("Popup config is wrong");
             }
             _titleText.text = _popupConfig.Title;
             _messageText.text = _popupConfig.Message;

@@ -39,7 +39,7 @@ public class MenuComponents
     [MenuItem("GameObject/UI/JackSParrot/Button")]
     static void CreateButtonView()
     {
-        var go = Object.Instantiate(Resources.Load<GameObject>("ButtonView"));
+        GameObject go = Object.Instantiate(Resources.Load<GameObject>("ButtonView"));
         go.name = "Button";
         AddToUI(go.transform);
     }
@@ -47,7 +47,7 @@ public class MenuComponents
     [MenuItem("GameObject/UI/JackSParrot/Popup")]
     static void CreatePopupView()
     {
-        var go = Object.Instantiate(Resources.Load<GameObject>("PopupView"));
+        GameObject go = Object.Instantiate(Resources.Load<GameObject>("PopupView"));
         go.name = "Popup";
         AddToUI(go.transform);
     }
@@ -68,7 +68,7 @@ public class MenuComponents
         }
         else
         {
-            var canvas = UnityEngine.Object.FindObjectOfType<Canvas>();
+            Canvas canvas = UnityEngine.Object.FindObjectOfType<Canvas>();
             if (canvas == null)
             {
                 canvas = CreateNewUI();
@@ -81,7 +81,7 @@ public class MenuComponents
 
     static public Canvas CreateNewUI()
     {
-        var root = new GameObject("Canvas");
+        GameObject root = new GameObject("Canvas");
         root.layer = LayerMask.NameToLayer("Default");
         Canvas canvas = root.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -94,10 +94,10 @@ public class MenuComponents
 
     private static void CreateEventSystem()
     {
-        var esys = Object.FindObjectOfType<EventSystem>();
+        EventSystem esys = Object.FindObjectOfType<EventSystem>();
         if (esys == null)
         {
-            var eventSystem = new GameObject("EventSystem");
+            GameObject eventSystem = new GameObject("EventSystem");
             eventSystem.AddComponent<EventSystem>();
             eventSystem.AddComponent<StandaloneInputModule>();
             Undo.RegisterCreatedObjectUndo(eventSystem, "Create " + eventSystem.name);
@@ -111,12 +111,12 @@ public class MenuComponents
 
         foreach (string guid1 in guids1)
         {
-            var path = AssetDatabase.GUIDToAssetPath(guid1);
+            string path = AssetDatabase.GUIDToAssetPath(guid1);
             Debug.Log(path);
-            var parts = path.Split('/');
+            string[] parts = path.Split('/');
             if (parts.Length > 1)
             {
-                var last = parts[parts.Length - 1];
+                string last = parts[parts.Length - 1];
                 if (last.Equals(name + ".cs"))
                 {
                     found = true;
@@ -137,7 +137,7 @@ public class MenuComponents
                 System.IO.Directory.CreateDirectory(directory);
             }
             string content = Resources.Load<TextAsset>("PopupView-NewPopup.cs").text;
-            var replaced = content.Replace("#SCRIPTNAME#", name);
+            string replaced = content.Replace("#SCRIPTNAME#", name);
             System.IO.File.WriteAllText($"{directory}/{name}.cs", replaced);
             AssetDatabase.Refresh();
         }

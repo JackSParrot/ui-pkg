@@ -1,6 +1,6 @@
 ﻿using JackSParrot.Services.Audio;
-using JackSParrot.Utils;
 using System;
+using JackSParrot.Services;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -10,16 +10,24 @@ namespace JackSParrot.UI
 {
     public class ButtonView : MonoBehaviour, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
     {
-        [SerializeField] DOTween.UITweenData _pointerDownTweenData = null;
-        [SerializeField] DOTween.UITweenData _pointerUpTweenData = null;
-        [SerializeField] bool _enabled = true;
-        [SerializeField] TMPro.TMP_Text _textTMP = null;
-        [SerializeField] Image _image = null;
-        [SerializeField] string _onClickSound = null;
-        [SerializeField] Sprite _disabledImage = null;
-        [SerializeField] UnityEvent _onClick = null;
-        Sprite _activeImage = null;
-        DOTween.UITweener _tweener = new DOTween.UITweener();
+        [SerializeField]
+        DOTween.UITweenData _pointerDownTweenData = null;
+        [SerializeField]
+        DOTween.UITweenData _pointerUpTweenData = null;
+        [SerializeField]
+        bool _enabled = true;
+        [SerializeField]
+        TMPro.TMP_Text _textTMP = null;
+        [SerializeField]
+        Image _image = null;
+        [SerializeField]
+        ClipId _onClickSound;
+        [SerializeField]
+        Sprite _disabledImage = null;
+        [SerializeField]
+        UnityEvent _onClick = null;
+        Sprite            _activeImage = null;
+        DOTween.UITweener _tweener     = new DOTween.UITweener();
 
         public bool Enabled
         {
@@ -27,20 +35,18 @@ namespace JackSParrot.UI
             set
             {
                 _enabled = value;
-                if(_activeImage == null)
+                if (_activeImage == null)
                 {
                     _activeImage = _image.sprite;
                 }
+
                 _image.sprite = _enabled ? _activeImage : _disabledImage;
             }
         }
 
         public string Text
         {
-            get
-            {
-                return  _textTMP.text;
-            }
+            get { return _textTMP.text; }
 
             set
             {
@@ -53,10 +59,7 @@ namespace JackSParrot.UI
 
         public Color TextColor
         {
-            get
-            {
-                return  _textTMP.color;
-            }
+            get { return _textTMP.color; }
 
             set
             {
@@ -69,44 +72,34 @@ namespace JackSParrot.UI
 
         public Sprite ImageSprite
         {
-            set
-            {
-                _image.sprite = value;
-            }
+            set { _image.sprite = value; }
         }
 
         public Image Image
         {
-            get
-            {
-                return _image;
-            }
+            get { return _image; }
         }
 
         public Color Color
         {
-            get
-            {
-                return _image.color;
-            }
-            set
-            {
-                _image.color = value;
-            }
+            get { return _image.color; }
+            set { _image.color = value; }
         }
 
         public event Action OnClick;
 
         void Awake()
         {
-            if(_image != null && _activeImage == null)
+            if (_image != null && _activeImage == null)
             {
                 _activeImage = _image.sprite;
             }
+
             if (_pointerDownTweenData.Target == null)
             {
                 _pointerDownTweenData.Target = gameObject;
             }
+
             if (_pointerUpTweenData.Target == null)
             {
                 _pointerUpTweenData.Target = gameObject;
@@ -118,9 +111,9 @@ namespace JackSParrot.UI
             if (!_enabled) return;
             OnClick?.Invoke();
             _onClick?.Invoke();
-            if (!string.IsNullOrEmpty(_onClickSound))
+            if (_onClickSound.IsValid())
             {
-                SharedServices.GetService<AudioService>()?.PlaySFX(_onClickSound);
+                ServiceLocator.GetService<AudioService>()?.PlaySfx(_onClickSound);
             }
         }
 

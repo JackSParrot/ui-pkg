@@ -34,7 +34,7 @@ namespace JackSParrot.UI
             while(remaining > 0f)
             {
                 float factor = Mathf.Max(0f, remaining / duration);
-                var factorInv = 1f - factor;
+                float factorInv = 1f - factor;
                 transform.localPosition = Vector3.Lerp(origin, target, factorInv);
                 _group.alpha = factor;
                 remaining -= Time.deltaTime;

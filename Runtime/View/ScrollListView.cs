@@ -22,7 +22,7 @@ namespace JackSParrot.UI
 
         public GameObject AddElement()
         {
-            var clone = Instantiate(_replicationPrefab);
+            GameObject clone = Instantiate(_replicationPrefab);
             clone.SetActive(true);
             clone.transform.SetParent(_container.transform, false);
             _elements.Add(clone);
@@ -31,7 +31,7 @@ namespace JackSParrot.UI
 
         public GameObject AddElementAt(int idx)
         {
-            var clone = Instantiate(_replicationPrefab);
+            GameObject clone = Instantiate(_replicationPrefab);
             clone.SetActive(true);
             clone.transform.SetParent(_container.transform, false);
             clone.transform.SetSiblingIndex(idx);
@@ -54,7 +54,7 @@ namespace JackSParrot.UI
             {
                 return _elements[idx];
             }
-            SharedServices.GetService<ICustomLogger>()?.LogError("Index out of bounds");
+            Debug.LogError("Index out of bounds");
             return null;
         }
 
@@ -84,7 +84,7 @@ namespace JackSParrot.UI
 
         public T GetElementAt<T>(int idx) where T : MonoBehaviour
         {
-            var retVal = GetElementAt(idx);
+            GameObject retVal = GetElementAt(idx);
             return retVal == null ? null : retVal.GetComponent<T>();
         }
     }

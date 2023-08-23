@@ -1,6 +1,5 @@
 using System;
 using DG.Tweening;
-using JackSParrot.Utils;
 using UnityEngine;
 
 namespace JackSParrot.UI.DOTween
@@ -22,22 +21,22 @@ namespace JackSParrot.UI.DOTween
     [System.Serializable]
     public class UITweenData
     {
-        public GameObject Target = null;
-        public UIAnimationTypes AnimationType = UIAnimationTypes.Move;
+        public GameObject         Target          = null;
+        public UIAnimationTypes   AnimationType   = UIAnimationTypes.Move;
         public UIAnimationMethods AnimationMethod = UIAnimationMethods.To;
-        public Ease EaseType = Ease.Linear;
-        public float Duration = 0f;
-        public float Delay = 0f;
-        public bool Loop = false;
-        public bool PingPong = false;
-        public bool StartOffset = true;
-        public Vector3 From = Vector3.zero;
-        public Vector3 To = Vector3.one;
+        public Ease               EaseType        = Ease.Linear;
+        public float              Duration        = 0f;
+        public float              Delay           = 0f;
+        public bool               Loop            = false;
+        public bool               PingPong        = false;
+        public bool               StartOffset     = true;
+        public Vector3            From            = Vector3.zero;
+        public Vector3            To              = Vector3.one;
     }
 
     public class UITweener
     {
-        Tween _tweenObj;
+        Tween       _tweenObj;
         UITweenData _playingData = null;
 
         public void Play(UITweenData data, Action onFinish = null)
@@ -45,7 +44,7 @@ namespace JackSParrot.UI.DOTween
             Stop();
             if (data.Target == null)
             {
-                SharedServices.GetService<ICustomLogger>()?.LogError("Tried to animate an object with no target");
+                Debug.LogError("Tried to animate an object with no target");
                 onFinish?.Invoke();
                 return;
             }
@@ -112,12 +111,12 @@ namespace JackSParrot.UI.DOTween
             Material material = renderer.material;
             if (_playingData.StartOffset)
             {
-                var color = material.color;
-                 color.a = _playingData.From.x;
-                 material.color = color;
+                Color color = material.color;
+                color.a = _playingData.From.x;
+                material.color = color;
             }
 
-            var to = _playingData.To;
+            Vector3 to = _playingData.To;
             if (_playingData.AnimationMethod == UIAnimationMethods.By)
             {
                 to.x += material.color.a;
@@ -138,7 +137,7 @@ namespace JackSParrot.UI.DOTween
                 cg.alpha = _playingData.From.x;
             }
 
-            var to = _playingData.To;
+            Vector3 to = _playingData.To;
             if (_playingData.AnimationMethod == UIAnimationMethods.By)
             {
                 to.x += cg.alpha;
@@ -160,7 +159,7 @@ namespace JackSParrot.UI.DOTween
                 _playingData.Target.transform.localPosition = _playingData.From;
             }
 
-            var to = _playingData.To;
+            Vector3 to = _playingData.To;
             if (_playingData.AnimationMethod == UIAnimationMethods.By)
             {
                 to += _playingData.Target.transform.localPosition;
@@ -176,7 +175,7 @@ namespace JackSParrot.UI.DOTween
                 rt.localPosition = _playingData.From;
             }
 
-            var to = _playingData.To;
+            Vector3 to = _playingData.To;
             if (_playingData.AnimationMethod == UIAnimationMethods.By)
             {
                 to += rt.localPosition;
@@ -193,7 +192,7 @@ namespace JackSParrot.UI.DOTween
                 transform.localScale = _playingData.From;
             }
 
-            var to = _playingData.To;
+            Vector3 to = _playingData.To;
             if (_playingData.AnimationMethod == UIAnimationMethods.By)
             {
                 to += transform.localScale;
@@ -216,7 +215,7 @@ namespace JackSParrot.UI.DOTween
                 transform.localRotation = Quaternion.Euler(_playingData.From);
             }
 
-            var to = _playingData.To;
+            Vector3 to = _playingData.To;
             if (_playingData.AnimationMethod == UIAnimationMethods.By)
             {
                 to.z += transform.localRotation.z;
@@ -232,7 +231,7 @@ namespace JackSParrot.UI.DOTween
                 rt.localRotation = Quaternion.Euler(_playingData.From);
             }
 
-            var to = _playingData.To;
+            Vector3 to = _playingData.To;
             if (_playingData.AnimationMethod == UIAnimationMethods.By)
             {
                 to += rt.localRotation.eulerAngles;

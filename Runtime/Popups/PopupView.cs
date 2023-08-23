@@ -1,4 +1,5 @@
 ﻿using System;
+using JackSParrot.Services;
 using UnityEngine;
 using JackSParrot.Utils;
 using JackSParrot.Services.Audio;
@@ -12,8 +13,10 @@ namespace JackSParrot.UI
 
     public class PopupView : BaseView
     {
-        [SerializeField] string _onAppearSound = null;
-        [SerializeField] string _onHideSound = null;
+        [SerializeField]
+        ClipId _onAppearSound;
+        [SerializeField]
+        ClipId _onHideSound;
 
         IPopupConfig _config = null;
 
@@ -27,26 +30,27 @@ namespace JackSParrot.UI
             base.Show(animated, onFinish);
             if (_config == null)
             {
-                SharedServices.GetService<ICustomLogger>()?.LogError("Showing a popup not initialized");
+                Debug.LogError("Showing a popup not initialized");
             }
-            if (!string.IsNullOrEmpty(_onAppearSound))
+
+            if (_onAppearSound.IsValid())
             {
-                SharedServices.GetService<AudioService>()?.PlaySFX(_onAppearSound);
+                ServiceLocator.GetService<AudioService>()?.PlaySfx(_onAppearSound);
             }
         }
 
         public override void Hide(bool animated = true, Action onFinish = null)
         {
             base.Hide(animated, onFinish);
-            if (!string.IsNullOrEmpty(_onHideSound))
+            if (_onHideSound.IsValid())
             {
-                SharedServices.GetService<AudioService>()?.PlaySFX(_onHideSound);
+                ServiceLocator.GetService<AudioService>()?.PlaySfx(_onHideSound);
             }
         }
 
         protected override void OnHidden(Action callback)
         {
-            SharedServices.GetService<UIService>().PopPopup();
+            ServiceLocator.GetService<UIService>().PopPopup();
             base.OnHidden(callback);
         }
 

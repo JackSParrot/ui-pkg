@@ -12,10 +12,10 @@ namespace JackSParrot.UI
         {
             if(_notificationsTransform.childCount > 0)
             {
-                var rt = notification.GetComponent<RectTransform>();
+                RectTransform rt = notification.GetComponent<RectTransform>();
                 for(int i = 0; i < _notificationsTransform.childCount; ++i)
                 {
-                    var current = _notificationsTransform.GetChild(i);
+                    Transform current = _notificationsTransform.GetChild(i);
                     float height = Screen.safeArea.height * (rt.anchorMax.y - rt.anchorMin.y);
                     current.localPosition += new Vector3(0.0f, height, 0.0f);
                 }
