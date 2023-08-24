@@ -31,6 +31,7 @@ namespace JackSParrot.UI
             if(_popupConfig == null)
             {
                 Debug.LogError("Popup config is wrong");
+                return;
             }
             _titleText.text = _popupConfig.Title;
             _messageText.text = _popupConfig.Message;
