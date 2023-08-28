@@ -18,6 +18,7 @@ namespace JackSParrot.Services
 		public string PopupAddress;
 	}
 
+    [CreateAssetMenu(fileName = "UIService", menuName = "JackSParrot/Services/UIService")]
 	public class UIService: AService
 	{
 		UIRoot _uiRoot;
